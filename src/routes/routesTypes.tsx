@@ -10,6 +10,7 @@ export namespace inputTypes{
         email: string, 
         password: string
     }
+
     export type UserReg = {
         email: string, 
         firstName: string, 
@@ -57,7 +58,7 @@ export namespace outputTypes{
         ]
     }
     
-    export type Test = {
+    export type Tests = {
         tests: [
             {
               end: string,
@@ -69,9 +70,15 @@ export namespace outputTypes{
         ]
     }
     
-    export type Answer = {
-        answers: TaskAnswer[],
-        testID: number
+    export type TestResult = {
+        "result": {
+            end: string,
+            grade: number,
+            id: number,
+            start: string,
+            studentID: number,
+            testID: number
+        }
     }
 }
 
