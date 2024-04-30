@@ -1,5 +1,6 @@
 import React from "react";
-import {UserAuth, UserReg, TestID, TestAnswer} from "./routesTypes"
+import {inputTypes, outputTypes} from "./routesTypes"
+let a: inputTypes.UserAuth = {email: "", password: ""}
 
 const baseUrl = "https://localhost:8080"
 
@@ -11,10 +12,9 @@ const getTestsUrl = "/get_tests"
 const send_answers_url = "/send_answers"
 
 
-
 class RoutesManager{
 
-    public static authUser(requestBody: UserAuth, setter: (variable: any) => void){
+    public static authUser(requestBody: inputTypes.UserAuth, setter: (variable: any) => void){
         
         const requestOptions = {
 			method: 'POST',
@@ -35,7 +35,7 @@ class RoutesManager{
         .catch(e => console.log(e))
     }
 
-    public static createUser(requestBody: UserReg, setter: (variable: any) => void){
+    public static createUser(requestBody: inputTypes.UserReg, setter: (variable: any) => void){
         
         const requestOptions = {
 			method: 'POST',
@@ -49,14 +49,14 @@ class RoutesManager{
         .catch(e => console.log(e))
     }
 
-    public static get_tests(setter: (variable: any) => void){
+    public static getTests(setter: (variable: any) => void){
         fetch(baseUrl + getTestsUrl)
         .then(response => response.json())
         .then(response => setter(response))
         .catch(e => console.log(e))
     }
 
-    public static get_tasks_from_test(requestBody: TestID, setter: (variable: any) => void){
+    public static getTasksFromTest(requestBody: inputTypes.TestID, setter: (variable: any) => void){
         const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ class RoutesManager{
         .catch(e => console.log(e))
     }
 
-    public static send_answers(requestBody: TestAnswer, setter: (variable: any) => void){
+    public static sendAnswers(requestBody: inputTypes.TestAnswer, setter: (variable: any) => void){
         
         const requestOptions = {
 			method: 'POST',
