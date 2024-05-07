@@ -1,9 +1,26 @@
 import React from "react";
 
-type TaskAnswer = {
-    answer: string, 
+export type TaskAnswer = {
+    answer: string,
     taskID: number
 }
+
+export type IUser = {
+    id?: any | null,
+    firstName?: string, 
+    lastName?: string, 
+    email?: string,
+    password?: string,
+    roles?: Array<string>,
+    token: number
+  }
+
+type TaskResult = {
+    taskId: number,
+    taskGrade: number,
+    maxTaskGrade: number,
+    taskName: string
+  }
 
 export namespace inputTypes{
     export type UserAuth = {
@@ -25,6 +42,32 @@ export namespace inputTypes{
     export type TestAnswer = {
         answers: TaskAnswer[], 
         testID: number
+        token: number
+    }
+
+    export type Task = {
+        task: {
+            answer: string,
+            data: string,
+            description: string,
+            id: number,
+            maxGrade: number,
+            name: string,
+            testID: number
+        }
+        
+    }
+
+    type Test = {
+        end: string,
+        id: number,
+        description: string,
+        name: string,
+        start: string
+    }
+
+    export type TestInfo = {
+        test: Test
     }
 }
 
@@ -41,7 +84,8 @@ export namespace outputTypes{
               id: number,
               start: string,
               studentID: number,
-              testID: number
+              testID: number,
+              modules: TaskResult[]
             }
         ]
     }
@@ -57,28 +101,37 @@ export namespace outputTypes{
             }
         ]
     }
+
+    export type TestID = {
+        test_id: number
+    }
+
+    export type Test = {
+        end: string,
+        id: number,
+        interval: string,
+        name: string,
+        start: string
+    }
     
     export type Tests = {
-        tests: [
-            {
-              end: string,
-              id: number,
-              interval: string,
-              name: string,
-              start: string
-            }
-        ]
+        tests: Test[]
     }
     
     export type TestResult = {
-        "result": {
+        result: {
             end: string,
             grade: number,
             id: number,
             start: string,
             studentID: number,
-            testID: number
+            testID: number,
+            modules: TaskResult[]
         }
+    }
+
+    export type TaskID = {
+        task_id: number
     }
 }
 
